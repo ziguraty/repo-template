@@ -51,13 +51,9 @@ jobs:
 
           data = tomllib.loads(Path("pyproject.toml").read_text())
 
-          upstream = (
-              # data
-              # .get("tool", {})
-              .get("repo-template", {})
-              .get("upstream", "")
-              .strip()
-          )
+          tool = data.get("tool", {})
+          repo_template = tool.get("repo-template", {})
+          upstream = repo_template.get("upstream", "").strip()
 
           has_upstream = bool(upstream)
 
